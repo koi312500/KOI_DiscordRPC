@@ -5,15 +5,22 @@ from time import mktime
 print("KOI#4182's Discord Rich Presence Python.")
 
 client_id = '865396378837975072'
-start_time = mktime(time.localtime())
 rpc_obj = rpc.DiscordIpcClient.for_platform(client_id) 
 
-assets = {
-    "small_text": "현재 공부중입니다...",  # anything you like
-    "small_image": "koi3125_profile2",  # must match the image key
-    "large_text": "공부중.....",  # anything you like
-    "large_image": "studylogo"  # must match the image key
-}
+start_time = mktime(time.localtime())
+assets = {}
+
+def set_assets(sText:str, sImage:str, lText:str, lImage:str):
+    global assets
+    assets = {
+        "small_text": sText,
+        "small_image": sImage,
+        "large_text": lText,
+        "large_image" : lImage
+    }
+
+
+set_assets("현재 공부중입니다...", "koi3125_profile2", "공부중...", "studylogo")
 
 print("Program will ask forever. If you want to keep your rpc state, please don't input anything.")
 
@@ -27,11 +34,11 @@ while 1:
         start_time = mktime(time.localtime())
 
     if activity_change == 'y':
-        small_text = str(input("Small Text : "))
-        small_image_name = str(input("Small image name : "))
-        print(small_image_name)
-        large_text = str(input("Large Text : "))
-        large_image_name = str(input("Large image name : "))
+        sText = str(input("Small Text : "))
+        sImage = str(input("Small image name : "))
+        lText = str(input("Large Text : "))
+        lImage = str(input("Large image name : "))
+        set_assets(sText, sImage, lText, lImage)
 
     activity = {
             "state": state_now,  # anything you like
