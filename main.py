@@ -21,9 +21,17 @@ while 1:
     detatils_now = str(input("Please input you RPC's details : "))
     state_now = str(input("Please input you RPC's state : "))
     timestamps_change = str(input("Do you want to change your timestamps to now? Input 'y' to change. : "))
+    activity_change = str(input("Do you want to change your activity now? Input 'y' to change. : "))
 
     if timestamps_change == 'y':
         start_time = mktime(time.localtime())
+
+    if activity_change == 'y':
+        small_text = str(input("Small Text : "))
+        small_image_name = str(input("Small image name : "))
+        print(small_image_name)
+        large_text = str(input("Large Text : "))
+        large_image_name = str(input("Large image name : "))
 
     activity = {
             "state": state_now,  # anything you like
